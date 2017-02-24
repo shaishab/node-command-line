@@ -3,6 +3,11 @@ Simple node.js commandline or terminal interface to execute cli commands from no
 
 using _node-command-line_ you can run commands synchronously/asynchronously and get the output as a promise.
 
+#Method
+
+| method | argument | functionality |
+|---|---|---|
+| run  | command | run command synchronously/asynchronously based on using yield
 
 
 #Examples
@@ -26,7 +31,7 @@ function runSingleCommandWithoutWait() {
 In this example run the command `node --version` that will show the node version and also print `Executed your command :)`.
  node version may shown after print `Executed your command :)` because of second command do not wait for executing the first command.
 
-** So output in console like:**
+**Output in console like:**
  
 ```
  Executed your command :)
@@ -49,7 +54,7 @@ function runSingleCommandWithWait() {
 In this example run the command `node --version` that will show the node version and also print `Executed your command :)`.
  node version will show before print `Executed your command :)` because of second command will execute after executing the first command.
 
-** So output in console like:**
+**Output in console like:**
  
 ```
  v6.2.1
@@ -76,7 +81,7 @@ function runMultipleCommandWithoutWait() {
 In this example run the command `node --version` and `npm --version` that will show the node version and npm version also print `Executed your command :)`.
  node and npm version may shown after print `Executed your command :)` because of `console.log`` do not wait for executing the first two command.
 
-** So output in console like:**
+**Output in console like:**
  
 ```
  Executed your command :)
@@ -104,7 +109,7 @@ function runMultipleCommandWithWait() {
 In this example run the command `node --version` and `npm --version` that will show the node version and npm version also print `Executed your command :)`.
  node and npm version will show before print `Executed your command :)` because of `console.log`` will be waiting  for executing the first two command.
 
- **So output in console like:**
+**Output in console like:**
  
 ```
  
@@ -127,7 +132,8 @@ function runSingleCommandWithWait() {
        // if success get stdout info in message. like response.message
     } else {
       // do something
-      // if not success get error message and stdErr info as error and stdErr. like response.error and response.stdErr
+      // if not success get error message and stdErr info as error and stdErr. 
+      //like response.error and response.stdErr
     }
     console.log('Executed your command :)');
   })();
