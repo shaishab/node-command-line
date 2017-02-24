@@ -115,3 +115,21 @@ In this example run the command `node --version` and `npm --version` that will s
  Executed your command :)
  
 ```
+
+**Execute the single command with wait and get response (using promise)** 
+
+```
+function runSingleCommandWithWait() {
+  Promise.coroutine(function *() {
+    var response = yield cmd.run('node --version');
+    if(response.success) {
+       // do something
+       // if success get stdout info in message. like response.message
+    } else {
+      // do something
+      // if not success get error message and stdErr info as error and stdErr. like response.error and response.stdErr
+    }
+    console.log('Executed your command :)');
+  })();
+}
+```
