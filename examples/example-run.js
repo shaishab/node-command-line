@@ -36,7 +36,7 @@ function runSingleCommandWithWait() {
 
 function runMultipleCommandWithoutWait() {
   Promise.coroutine(function *() {
-    var commands = ["node --version","node -p 'hello-world'"];
+    var commands = ["node --version","npm --version"];
     for(var i=0; i < commands.length; i++) {
       cmd.run(commands[i]);
     }
@@ -46,7 +46,7 @@ function runMultipleCommandWithoutWait() {
 
 function runMultipleCommandWithWait() {
   Promise.coroutine(function *() {
-    var commands = ["node --version","node -p 'hello-world'"];
+    var commands = ["node --version","npm --version"];
     for(var i=0; i < commands.length; i++) {
       yield cmd.run(commands[i]);
     }
