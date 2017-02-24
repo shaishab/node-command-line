@@ -121,7 +121,7 @@ In this example run the command `node --version` and `npm --version` that will s
  
 ```
 
-**Execute the single command with wait and get response (using promise)** 
+**Execute the single command with wait and get response (using yield)** 
 
 ```
 function runSingleCommandWithWait() {
