@@ -1,6 +1,6 @@
 {
   "name": "node-command-line",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple command line interface to execute command from node environment with promise",
   "main": "node-command-line.js",
   "scripts": {
