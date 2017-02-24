@@ -3,14 +3,19 @@ Simple node.js commandline or terminal interface to execute cli commands from no
 
 using _node-command-line_ you can run commands synchronously/asynchronously and get the output as a promise.
 
-#Method
+<!--## Install the package-->
+<!--```-->
+<!--$ npm install --save node-command-line-->
+<!--```-->
+
+##Method
 
 | method | argument | functionality |
 |---|---|---|
 | run  | command | run command synchronously/asynchronously based on using yield
 
 
-#Examples
+##Examples
 
 Inject the dependencies 
 
