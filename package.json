@@ -1,6 +1,6 @@
 {
   "name": "node-command-line",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple command line interface to execute command from node environment with promise",
   "main": "node-command-line.js",
   "scripts": {
@@ -11,14 +11,15 @@
     "url": "git+https://github.com/shaishab/node-command-line.git"
   },
   "keywords": [
-    "node.js",
     "node",
     "command",
-    "command-line",
-    "cmd",
-    "node-command-line",
     "line",
-    "cli"
+    "cmd",
+    "cli",
+    "node command line",
+    "node cli",
+    "node cmd",
+    "node-command-line"
   ],
   "author": "shaishab.cse@gmail.com",
   "license": "MIT",
