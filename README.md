@@ -18,7 +18,7 @@ $ npm install --save node-command-line
 
 | method | argument | functionality |
 |---|---|---|
-| run  | command | run command synchronously/asynchronously based on using yield
+| run  | command, true/false | run command synchronously/asynchronously based on using await and pass second parameter true or false to print from library or not. Default vaue is true.
 
 
 ##Examples
@@ -26,8 +26,7 @@ $ npm install --save node-command-line
 Inject the dependencies 
 
 ```
-var cmd     = require('node-command-line'),
-    Promise = require('bluebird');
+var cmd     = require('node-command-line')
 ```
 
 **Execute the single command without wait** 
@@ -42,23 +41,46 @@ function runSingleCommandWithoutWait() {
 In this example run the command `node --version` that will show the node version and also print `Executed your command :)`.
  node version may shown after print `Executed your command :)` because of second command do not wait for executing the first command.
 
+ I've added a basic sanitization step that removes characters commonly associated with shell command injection attacks. This helps prevent unwanted characters from being executed within the shell command.
+
 **Output in console like:**
  
 ```
  Executed your command :)
  
- v6.2.1
+ v16.15.1
+ 
+```
+
+**Execute command and pass second parameter true/false to print from library or not** 
+
+```
+function runSingleCommandWithoutWait() {
+  cmd.run('node --version', false); // Will not print output from library
+  console.log('Executed your command :)');
+}
+```
+
+In this example run the command `node --version` that will show the node version and also print `Executed your command :)`.
+ node version may shown after print `Executed your command :)` because of second command do not wait for executing the first command.
+
+ I've added a basic sanitization step that removes characters commonly associated with shell command injection attacks. This helps prevent unwanted characters from being executed within the shell command.
+
+**Output in console like:**
+ 
+```
+ Executed your command :)
+ 
+ v16.15.1
  
 ```
 
 **Execute the single command with wait (using promise)** 
 
 ```
-function runSingleCommandWithWait() {
-  Promise.coroutine(function *() {
-    yield cmd.run('node --version');
-    console.log('Executed your command :)');
-  })();
+async function runSingleCommandWithWait() {
+  await cmd.run('node --version');
+  console.log('Executed your command :)');
 }
 ```
 
@@ -68,7 +90,7 @@ In this example run the command `node --version` that will show the node version
 **Output in console like:**
  
 ```
- v6.2.1
+ v16.15.1
  
  Executed your command :)
  
@@ -78,14 +100,12 @@ In this example run the command `node --version` that will show the node version
 **Execute the multiple command without wait** 
 
 ```
-function runMultipleCommandWithoutWait() {
-  Promise.coroutine(function *() {
-    var commands = ["node --version","npm --version"];
-    for(var i=0; i < commands.length; i++) {
-      cmd.run(commands[i]);
-    }
-    console.log('Executed your command :)');
-  })();
+async function runMultipleCommandWithoutWait() {
+  var commands = ["node --version", "npm --version"];
+  for (var i = 0; i < commands.length; i++) {
+    cmd.run(commands[i]);
+  }
+  console.log('Executed your command :)');
 }
 ```
 
@@ -97,23 +117,21 @@ In this example run the command `node --version` and `npm --version` that will s
 ```
  Executed your command :)
  
- v6.2.1
+ v16.15.1
  
- 3.10.2
+ 9.8.1
  
 ```
 
 **Execute the multiple command without wait** 
 
 ```
-function runMultipleCommandWithWait() {
-  Promise.coroutine(function *() {
-    var commands = ["node --version","npm --version"];
-    for(var i=0; i < commands.length; i++) {
-      yield cmd.run(commands[i]);
-    }
-    console.log('Executed your command :)');
-  })();
+async function runMultipleCommandWithWait() {
+  var commands = ["node --version", "npm --version"];
+  for (var i = 0; i < commands.length; i++) {
+    await cmd.run(commands[i]);
+  }
+  console.log('Executed your command :)');
 }
 ```
 
@@ -124,9 +142,9 @@ In this example run the command `node --version` and `npm --version` that will s
  
 ```
  
- v6.2.1
+ v16.15.1
  
- 3.10.2
+ 9.8.1
  
  Executed your command :)
  
@@ -135,11 +153,12 @@ In this example run the command `node --version` and `npm --version` that will s
 **Execute the single command with wait and get response (using yield)** 
 
 ```
-function runSingleCommandWithWait() {
+function runSingleCommandWithWaitAndGetResponse() {
   Promise.coroutine(function *() {
     var response = yield cmd.run('node --version');
     if(response.success) {
-       // do something
+      console.log('Response received===', response.message);
+       // do something  with response
        // if success get stdout info in message. like response.message
     } else {
       // do something

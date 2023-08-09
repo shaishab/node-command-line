@@ -26,8 +26,5 @@
   "bugs": {
     "url": "https://github.com/shaishab/node-command-line/issues"
   },
-  "homepage": "https://github.com/shaishab/node-command-line#readme",
-  "dependencies": {
-    "bluebird": "^3.4.7"
-  }
+  "homepage": "https://github.com/shaishab/node-command-line#readme"
 }
