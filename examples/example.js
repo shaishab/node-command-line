@@ -11,20 +11,28 @@ if (process.argv[1].indexOf("example.js") !== -1) {
   if (process.argv[2] === 'ex1') {
     runSingleCommandWithoutWait();
   } else if (process.argv[2] === 'ex2') {
-    runSingleCommandWithWait();
+    runSingleCommandWithoutWaitAndPrint();
   } else if (process.argv[2] === 'ex3') {
-    runMultipleCommandWithoutWait();
+    runSingleCommandWithWait();
   } else if (process.argv[2] === 'ex4') {
-    runMultipleCommandWithWait();
+    runMultipleCommandWithoutWait();
   } else if (process.argv[2] === 'ex5') {
+    runMultipleCommandWithWait();
+  } else if (process.argv[2] === 'ex6') {
     runSingleCommandWithWaitAndGetResponse();
   } else {
     runSingleCommandWithoutWait();
   }
 }
 
+
 function runSingleCommandWithoutWait() {
   cmd.run('node --version');
+  console.log('Executed your command :)');
+}
+
+function runSingleCommandWithoutWaitAndPrint() {
+  cmd.run('node --version', false);
   console.log('Executed your command :)');
 }
 
