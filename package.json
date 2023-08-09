@@ -1,7 +1,7 @@
 {
   "name": "node-command-line",
-  "version": "1.0.2",
-  "description": "Simple command line interface to execute command from node environment with promise",
+  "version": "2.0.1",
+  "description": "Simple command line interface to execute command from node environment with promise and avoid shell escaping",
   "main": "node-command-line.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
