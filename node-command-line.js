@@ -1,21 +1,23 @@
-var exec = require('child_process').exec,
-    Promise = require('bluebird');
+const { exec } = require('child_process');
+const { promisify } = require('util');
 
-var nodeCommandline={
-  run:executeCommand
-};
+const execPromise = promisify(exec);
 
-function executeCommand(command){
-  return new Promise(function(resolve, reject) {
-    exec(command, function(error, stdout, stderr) {
-      if(error) {
-        console.error(error.message);
-        return resolve({success: false, error: error.message, stdErr: stderr});
-      }
+async function run(command,  doPrint=true) {
+  // Sanitize and escape the command before executing
+  const sanitizedCommand = command.replace(/[;<>&|"'$`\\]/g, '');
+  try {
+    const { stdout, stderr } = await execPromise(sanitizedCommand);
+    if(doPrint) {
       console.log(stdout);
-      return resolve({success: true, message: stdout});
-    });
-  });
+    }
+    return { success: true, message: stdout, stdErr: stderr };
+  } catch (error) {
+    if(doPrint) {
+      console.error(error.message);
+    }
+    return { success: false, error: error.message, stdErr: error.stderr };
+  }
 }
 
-module.exports=nodeCommandline;
+module.exports = { run };
