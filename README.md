@@ -35,7 +35,7 @@ Inject the dependencies
 var cmd     = require('node-command-line')
 ```
 
-**Execute the single command without wait** 
+**Ex1: Execute the single command without wait** 
 
 ```
 function runSingleCommandWithoutWait() {
@@ -58,7 +58,7 @@ In this example run the command `node --version` that will show the node version
  
 ```
 
-**Execute command and pass second parameter true/false to print from library or not** 
+**Ex2: Execute command and pass second parameter true/false to print from library or not** 
 
 ```
 function runSingleCommandWithoutWait() {
@@ -77,7 +77,7 @@ In this example run the command `node --version` that will not sow the node vers
  
 ```
 
-**Execute the single command with wait (using promise)** 
+**Ex3: Execute the single command with wait (using promise)** 
 
 ```
 async function runSingleCommandWithWait() {
@@ -99,7 +99,7 @@ In this example run the command `node --version` that will show the node version
 ```
 
 
-**Execute the multiple command without wait** 
+**Ex4: Execute the multiple command without wait** 
 
 ```
 async function runMultipleCommandWithoutWait() {
@@ -125,7 +125,7 @@ In this example run the command `node --version` and `npm --version` that will s
  
 ```
 
-**Execute the multiple command without wait** 
+**Ex5: Execute the multiple command without wait** 
 
 ```
 async function runMultipleCommandWithWait() {
@@ -152,7 +152,7 @@ In this example run the command `node --version` and `npm --version` that will s
  
 ```
 
-**Execute the single command with async wait and get response ** 
+**Ex6: Execute the single command with async wait and get response** 
 
 ```
 async function runSingleCommandWithWaitAndGetResponse() {
@@ -168,4 +168,12 @@ async function runSingleCommandWithWaitAndGetResponse() {
   }
  console.log('Executed your command :)');
 }
+```
+
+**Output in console like:**
+ 
+```
+ 
+ Executed your command :)
+ 
 ```
