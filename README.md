@@ -22,7 +22,9 @@ $ npm install --save node-command-line
 
 
 
-### Note: I've added a basic sanitization step that removes characters commonly associated with shell command injection attacks. This helps prevent unwanted characters from being executed within the shell command.
+### **Note: 
+
+`I've added a basic sanitization step that removes characters commonly associated with shell command injection attacks. This helps prevent unwanted characters from being executed within the shell command.`
 
 
 ## Examples
