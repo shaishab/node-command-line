@@ -3,7 +3,7 @@ Simple node.js commandline or terminal interface to execute cli commands from no
 
 using _node-command-line_ you can run commands synchronously/asynchronously and get the output as a promise.
 
-#####npm info :    
+##### npm info :    
 ![node-command-line npm version](https://img.shields.io/npm/v/node-command-line.svg) ![total npm downloads for node-command-line](https://img.shields.io/npm/dt/node-command-line.svg) ![monthly npm downloads for node-command-line](https://img.shields.io/npm/dm/node-command-line.svg) ![npm licence for node-command-line](https://img.shields.io/npm/l/node-command-line.svg)
 
 ##### GitHub Info:
@@ -14,14 +14,18 @@ using _node-command-line_ you can run commands synchronously/asynchronously and 
 $ npm install --save node-command-line
 ```
 
-##Method
+## Method
 
 | method | argument | functionality |
-|---|---|---|
-| run  | command, true/false | run command synchronously/asynchronously based on using await and pass second parameter true or false to print from library or not. Default vaue is true.
+|--------|----------|---------------|
+| run | command, true/false | run command synchronously/asynchronously based on using await and pass second parameter true or false to print from library or not. Default vaue is true.|
 
 
-##Examples
+
+### Note: I've added a basic sanitization step that removes characters commonly associated with shell command injection attacks. This helps prevent unwanted characters from being executed within the shell command.
+
+
+## Examples
 
 Inject the dependencies 
 
@@ -61,17 +65,13 @@ function runSingleCommandWithoutWait() {
 }
 ```
 
-In this example run the command `node --version` that will show the node version and also print `Executed your command :)`.
- node version may shown after print `Executed your command :)` because of second command do not wait for executing the first command.
-
- I've added a basic sanitization step that removes characters commonly associated with shell command injection attacks. This helps prevent unwanted characters from being executed within the shell command.
+In this example run the command `node --version` that will not sow the node version but print `Executed your command :)`.
+ node version won't show after print `Executed your command :)` because the second parameter passed false.
 
 **Output in console like:**
  
 ```
  Executed your command :)
- 
- v16.15.1
  
 ```
 
@@ -150,22 +150,20 @@ In this example run the command `node --version` and `npm --version` that will s
  
 ```
 
-**Execute the single command with wait and get response (using yield)** 
+**Execute the single command with async wait and get response ** 
 
 ```
-function runSingleCommandWithWaitAndGetResponse() {
-  Promise.coroutine(function *() {
-    var response = yield cmd.run('node --version');
-    if(response.success) {
-      console.log('Response received===', response.message);
-       // do something  with response
-       // if success get stdout info in message. like response.message
-    } else {
-      // do something
-      // if not success get error message and stdErr info as error and stdErr. 
-      //like response.error and response.stdErr
-    }
-    console.log('Executed your command :)');
-  })();
+async function runSingleCommandWithWaitAndGetResponse() {
+  let response = await cmd.run('node --version');
+  if(response.success) {
+    console.log('Response received===', response.message);
+    // do something
+    // if success get stdout info in message. like response.message
+  } else {
+    // do something
+    // if not success get error message and stdErr info as error and stdErr. 
+    //like response.error and response.stdErr
+  }
+ console.log('Executed your command :)');
 }
 ```
